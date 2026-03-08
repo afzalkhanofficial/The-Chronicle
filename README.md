@@ -1,9 +1,4 @@
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1000&q=80" alt="The Chronicle Banner" width="100%" style="border-radius: 8px;" />
-
-  <br />
-  <br />
-
   <h1>🗞️ The Chronicle</h1>
   
   <p>
