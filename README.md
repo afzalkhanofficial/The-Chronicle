@@ -62,6 +62,72 @@ Instead of relying on boilerplate UI libraries like Bootstrap or Tailwind, The C
 
 ---
 
+## 🗺️ Application Architecture & User Flow
+
+The Chronicle employs a robust MERN stack architecture with real-time capabilities. Here is how data moves through the application:
+
+```mermaid
+graph TD
+    %% User Interfaces
+    Client[React Client]
+    
+    %% API Gateway
+    subgraph Express Server
+        API[REST API endpoints]
+        Sockets[Socket.io Gateway]
+        Auth[JWT Middleware]
+    end
+    
+    %% Database Services
+    DB[(MongoDB Atlas)]
+    
+    %% Links
+    Client -- HTTP Requests --> API
+    Client -- WebSockets --> Sockets
+    API -- Read/Write --> DB
+    Sockets -- Listen/Broadcast --> DB
+    API -- Verifies --> Auth
+```
+
+### 🧑‍💻 Complete User Flow
+
+The platform heavily relies on dynamic User Roles. Below is the lifecycle of a user progressing through the application:
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    %% Registration
+    [*] --> Guest
+    Guest --> Reader : Registers / Logs In
+    
+    %% Core Operations
+    state Reader {
+        [*] --> Browsing
+        Browsing --> Reading: Views Article
+        Reading --> Voting: Upvotes/Downvotes
+        Reading --> Commenting: Leaves Note
+        Reading --> Bookmarking: Adds to My Desk
+    }
+    
+    %% Upgrading
+    Reader --> Author : "Become an Author"
+    
+    state Author {
+        [*] --> Writing
+        Writing --> Publishing
+        Publishing --> Live : Instant Publish
+    }
+    
+    %% Admin Powers
+    Author --> Admin : System Upgrade
+    Admin --> Moderation : Deletes Posts/Comments
+    Admin --> Editorial : "Stars as Editor's Pick"
+    Moderation --> [*]
+```
+
+---
+
 ## 🛠️ Tech Stack Architecture
 
 **Frontend:**
@@ -89,8 +155,8 @@ Instead of relying on boilerplate UI libraries like Bootstrap or Tailwind, The C
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/the-chronicle.git
-cd the-chronicle
+git clone https://github.com/afzalkhanofficial/The-Chronicle.git
+cd The-Chronicle
 ```
 
 ### 2. Configure the Backend (Server)
@@ -171,6 +237,13 @@ Please refer closely to the **`deployment_guide.md`** file for comprehensive ste
 
 ---
 
+## 🙏 Acknowledgements
+
+* **Typography:** [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Libre Franklin](https://fonts.google.com/specimen/Libre+Franklin).
+* **Images:** Default placeholders provided by Unsplash and Dicebear Avatars.
+
 <div align="center">
+  <br />
   <p>Built with ❤️ as a sophisticated MERN stack learning project.</p>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=1a1a1a&height=100&section=footer" width="100%" />
 </div>
