@@ -13,8 +13,7 @@
   <p>
     <a href="#features">Features</a> •
     <a href="#tech-stack">Tech Stack</a> •
-    <a href="#installation">Installation</a> •
-    <a href="#deployment">Deployment</a>
+    <a href="#installation">Installation</a>
   </p>
   
   <p>
@@ -223,24 +222,6 @@ the-chronicle/
     ├── server.js               # Application Entry Point & WebSockets setup
     └── package.json
 ```
-
----
-
-## 🌐 Deployment to Production
-
-Deploying this multi-tier application is straightforward. You will need to host three separate services:
-1. The Database on **MongoDB Atlas**
-2. The Backend on **Render.com** 
-3. The Frontend on **Vercel**
-
-Please refer closely to the **`deployment_guide.md`** file for comprehensive step-by-step instructions on pushing your code securely onto the internet for free!
-
----
-
-## 🙏 Acknowledgements
-
-* **Typography:** [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Libre Franklin](https://fonts.google.com/specimen/Libre+Franklin).
-* **Images:** Default placeholders provided by Unsplash and Dicebear Avatars.
 
 <div align="center">
   <br />
