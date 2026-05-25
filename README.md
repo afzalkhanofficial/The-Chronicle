@@ -192,6 +192,24 @@ The application will now be running smoothly at `http://localhost:5173`! 🚀
 
 ---
 
+## 🐳 Production Docker Setup
+
+For highly scalable, standardized production deployments, both the frontend and backend are containerized using optimized Dockerfiles.
+
+### 1. Frontend Dockerization (`/client/Dockerfile`)
+The frontend is built using a **Multi-Stage Docker Build** to ensure a minimal production footprint and high availability:
+* **Stage 1 (Compile)**: Utilizes `node:20-alpine` to compile all JSX, TypeScript, and CSS into static assets under the `/dist` directory.
+* **Stage 2 (Nginx Web Server)**: Discards the heavy Node engine, copying the compiled static assets into an ultra-fast, lightweight **Nginx** server on port `80`.
+* **SPA Routing Fix**: Overwrites the default Nginx configuration to automatically route all deep sub-pages (e.g., `/profile`, `/admin`) to `index.html` to prevent standard client-side routing 404 errors.
+
+### 2. Backend Dockerization (`/server/Dockerfile`)
+The server runs inside a continuous Node.js runtime to listen for WebSocket connections and REST endpoints:
+* **Footprint Optimization**: Utilizes lightweight `node:20-alpine` and skips local development dependencies like `nodemon` (using `--omit=dev` flags) to keep image sizes small.
+* **Exposed Ports**: Listens on port `5000` to serve production requests.
+
+---
+
+
 ## 📂 Project Structure
 
 A quick look at how the MERN architecture is cleanly separated and organized:
